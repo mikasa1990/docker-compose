@@ -1,18 +1,14 @@
----
 version: '2'
 services:
   servbuild:
     build: .
     volumes:
-     # - ./src:/opt/app
-      - /tmp:/opt/boxfuse-sample-java-war-hello/target/
+      - /tmp:/opt/
   servprod:
-    image: tomcat:9.0.20-jre8-alpine
+    image: tomcat:9
+    depends_on:
+      - servbuild
     ports:
       - "8080:8080"
     volumes:
-      - /tmp:/usr/local/tomcat/webapps/
----
-
-
-
+      - /tmp/boxfuse-sample-java-war-hello/target/:/usr/local/tomcat/webapps/
