@@ -2,20 +2,12 @@
 version: '2'
 services:
   servbuild:
-    image: ubuntu:20.04
-#    links:
-#      - php
+    build: .
     volumes:
-      - /tmp:./target/hello-1.0.war
-#    volumes_from:
-#      - php
+     # - ./src:/opt/app
+      - /tmp:/opt/boxfuse-sample-java-war-hello/target/
   servprod:
     image: tomcat:9.0.20-jre8-alpine
-#    environment:
-#     - TYPO3_CONTEXT=Development/Docker
-#    links:
-#      - db
-#      - redis
     ports:
       - "8080:8080"
     volumes:
