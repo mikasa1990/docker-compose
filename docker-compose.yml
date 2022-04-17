@@ -3,12 +3,12 @@ services:
   servbuild:
     build: .
     volumes:
-      - /tmp:/opt/
+      - data_volume:/opt/boxfuse-sample-java-war-hello/target/
   servprod:
     image: tomcat:9
-    depends_on:
-      - servbuild
     ports:
       - "8080:8080"
     volumes:
-      - /tmp/boxfuse-sample-java-war-hello/target/:/usr/local/tomcat/webapps/
+      - data_volume:/usr/local/tomcat/webapps/
+volumes:
+  data_volume:
